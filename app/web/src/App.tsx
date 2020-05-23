@@ -8,6 +8,7 @@ import {
   SilencePulse,
   SilencedBackgroundContainer,
 } from "./silence"
+import "antd/dist/antd.css"
 
 function App() {
   const [silence, setSilence] = React.useState(false)
