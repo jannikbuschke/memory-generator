@@ -1,11 +1,13 @@
 {
   "folders": [
     {
-      "path": "."
+      "name": "app",
+      "path": "app\\web"
     },
     {
-      "path": "app\\web"
-    }
+      "name": "root",
+      "path": "."
+    },
   ],
   "settings": {}
 }
