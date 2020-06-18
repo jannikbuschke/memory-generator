@@ -53,9 +53,8 @@ function App() {
             </div> */}
               <Content />
               <div>
-                <div style={{ padding: "1rem" }}>
-                  <Form colon={false}>
-                    {/* <div
+                <Form colon={false}>
+                  {/* <div
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
@@ -64,9 +63,8 @@ function App() {
                     <Back index={index} setIndex={setIndex} />
                     <Forward index={index} setIndex={setIndex} />
                   </div> */}
-                    <AutoStep setIndex={setIndex} />
-                  </Form>
-                </div>
+                  <AutoStep setIndex={setIndex} />
+                </Form>
               </div>
               <div>
                 <ProgressBar />
@@ -82,8 +80,10 @@ function App() {
 }
 
 const Container = styled.div`
-  max-width: 700px;
+  max-width: 500px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 function AutoStep({
