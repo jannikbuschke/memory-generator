@@ -66,23 +66,19 @@ export const SilencedBackgroundContainer = styled.div`
   width: 100vw;
   height: 100vh;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
   animation: ${blurIn}};
   animation-duration: 5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: .5s;
+
 `
 export const BackgroundContainer = styled.div`
   width: 100vw;
   height: 100vh;
 
+  padding: 1rem;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
