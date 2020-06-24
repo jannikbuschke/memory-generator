@@ -7,7 +7,7 @@ import { Question } from "./question"
 export function Second() {
   const ctx = useFormikContext<any>()
   return (
-    <div>
+    <>
       <Question>Wie willst du an die Geschichte erinnern?</Question>
 
       <RadioGroup name="volume" size="large">
@@ -32,6 +32,6 @@ export function Second() {
           tooltipVisible={false}
         /> 
       </Form.Item>*/}
-    </div>
+    </>
   )
 }

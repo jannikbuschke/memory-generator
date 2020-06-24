@@ -153,13 +153,15 @@ export function ButtonBar() {
         <div></div>
       )}
       {next ? (
-        <Button
-          size="large"
-          onClick={() => navigate(next.page)}
-          {...next.props}
-        >
-          {next.title}
-        </Button>
+        <div style={{ marginRight: 140 }}>
+          <Button
+            size="large"
+            onClick={() => navigate(next.page)}
+            {...next.props}
+          >
+            {next.title}
+          </Button>
+        </div>
       ) : (
         <div></div>
       )}
