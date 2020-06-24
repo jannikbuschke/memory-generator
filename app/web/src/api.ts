@@ -14,21 +14,19 @@ export function get(params: Options) {
       "x-APIKey": "7179e429611642d6bdf90f7c570dd110",
       "Content-Type": "application/json",
     },
-    // body: JSON.stringify(params),
-    body: JSON.stringify({
-      intro: "erinnern",
-      volume: "still",
-      tone: "mahnen",
-    }),
+    body: JSON.stringify(params),
   })
 }
 
 type Response = { ok: true; data: any } | { ok: false; error: string }
 
 export async function getText(params: Options): Promise<Response> {
+  console.log("get text", params)
   const response = await get(params)
   if (response.ok) {
-    return { ok: true, data: await response.json() }
+    const result = { ok: true, data: await response.json() } as Response
+    console.log("result", result)
+    return result
   } else {
     return { ok: false, error: response.statusText }
   }

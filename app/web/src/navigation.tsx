@@ -6,13 +6,21 @@ import { Info } from "./info"
 import { First } from "./form/1"
 import { Second } from "./form/2"
 import { Third } from "./form/3"
+import { ButtonProps } from "antd/lib/button"
+import { Result } from "./form/result"
 
 interface Page {
   name: string
   progress?: number
   Content: any
-  next?: { page: string; title: string }
-  previous?: { page: string; title: string }
+  next?: ActionProps
+  previous?: ActionProps
+}
+
+interface ActionProps {
+  page: string
+  title: string
+  props?: ButtonProps
 }
 
 const pages: { [name: string]: Page } = {
@@ -37,22 +45,34 @@ const pages: { [name: string]: Page } = {
     Content: <First />,
     next: { page: "second", title: "Weiter" },
     previous: { page: "intro", title: "Zurück" },
+    progress: 0,
   },
   second: {
     name: "second",
     Content: <Second />,
     next: { page: "third", title: "Weiter" },
     previous: { page: "first", title: "Zurück" },
+    progress: 1,
   },
   third: {
     name: "third",
     Content: <Third />,
-    next: { page: "second", title: "STARTEN" },
     previous: { page: "second", title: "Zurück" },
+    next: {
+      page: "result",
+      title: "Erinnerung generieren",
+      props: { type: "primary" },
+    },
+    progress: 2,
   },
-}
+  result: {
+    name: "result",
+    Content: <Result />,
+  },
+} as { [name: string]: Page }
 
 interface INavigationContext {
+  text: string | null
   currentPage: Page
   navigate: (page: string) => void
 }
@@ -69,12 +89,16 @@ export function useNavigation() {
   return ctx
 }
 
-export function NavigationProvider({ children }: React.PropsWithChildren<{}>) {
+export function NavigationProvider({
+  children,
+  text,
+}: React.PropsWithChildren<{ text: string | null }>) {
   const [page, setPage] = React.useState<Page>(pages["landing"])
 
   return (
     <NavigationContext.Provider
       value={{
+        text,
         currentPage: page,
         navigate: (page) => {
           const next = pages[page]
@@ -96,7 +120,11 @@ const { Step } = Steps
 export function ProgressBar() {
   const ctx = useNavigation()
   return ctx.currentPage.progress !== undefined ? (
-    <Steps progressDot={true} current={ctx.currentPage.progress}>
+    <Steps
+      progressDot={true}
+      current={ctx.currentPage.progress}
+      style={{ marginTop: 5 }}
+    >
       <Step />
       <Step />
       <Step />
@@ -108,24 +136,32 @@ export function ProgressBar() {
 export function ButtonBar() {
   const {
     navigate,
-    currentPage: { next, previous },
+    currentPage: { next, previous, name },
   } = useNavigation()
 
   return (
     <Bar>
       {previous ? (
-        <Button size="large" onClick={() => navigate(previous.page)}>
+        <Button
+          size="large"
+          onClick={() => navigate(previous.page)}
+          {...previous.props}
+        >
           {previous.title}
         </Button>
       ) : (
-        <div>no button</div>
+        <div></div>
       )}
       {next ? (
-        <Button size="large" onClick={() => navigate(next.page)}>
+        <Button
+          size="large"
+          onClick={() => navigate(next.page)}
+          {...next.props}
+        >
           {next.title}
         </Button>
       ) : (
-        <div>no button</div>
+        <div></div>
       )}
     </Bar>
   )

@@ -1,11 +1,11 @@
 import * as React from "react"
 import { RadioGroup } from "formik-antd/es/form-items"
 import { Radio } from "formik-antd"
-import styled from "styled-components"
+import { Question } from "./question"
 
 export function First() {
   return (
-    <div>
+    <>
       <Question>Wie verhältst du dich zur Geschichte?</Question>
       <RadioGroup name="intro" size="large">
         <Radio.Button name="intro" value="trauern">
@@ -24,8 +24,6 @@ export function First() {
           Beschweigen
         </Radio.Button>
       </RadioGroup>
-    </div>
+    </>
   )
 }
-
-export const Question = styled.p``

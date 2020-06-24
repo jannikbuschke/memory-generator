@@ -1,21 +1,19 @@
 import React from "react"
 import "./App.css"
 import { Formik, useFormikContext } from "formik"
-import { SubmitButton, Form, Radio, Slider } from "formik-antd"
-import { RadioGroup } from "formik-antd/es/form-items"
+import { SubmitButton, Form, FormikDebug } from "formik-antd"
 import {
   BackgroundContainer,
   SilencePulse,
   SilencedBackgroundContainer,
 } from "./silence"
 import "antd/dist/antd.css"
-import { Steps, notification, Button } from "antd"
+import { notification, Button, Spin } from "antd"
 import { Options, getText } from "./api"
 import { Header } from "./header"
 import styled from "styled-components"
-import { ProgressBar, ButtonBar } from "./navigation"
+import { ProgressBar, ButtonBar, NavigationProvider } from "./navigation"
 import { Content } from "./content"
-import { First } from "./form/1"
 
 function App() {
   const [silence, setSilence] = React.useState(false)
@@ -28,59 +26,60 @@ function App() {
       }, 20000)
     }
   }, [silence])
-  const [text, setText] = React.useState("")
+  const [text, setText] = React.useState<string | null>(null)
   return (
-    <Container>
-      <Formik<Options>
-        initialValues={{ intro: "bereuen", tone: "ehren", volume: "ganz laut" }}
-        onSubmit={async (values, f) => {
-          f.setSubmitting(false)
-          setSilence(values.intro === "beschweigen")
-          const response = await getText(values)
-          if (response.ok) {
-            setText(response.data.text)
-          } else {
-            notification.error({ message: response.error })
-          }
-        }}
-      >
-        {(f) => (
-          <Background>
-            <Container>
-              <Header />
-              {/* <div>
-              <div dangerouslySetInnerHTML={{ __html: text }} />
-            </div> */}
-              <Content />
-              <div>
-                <Form colon={false}>
-                  {/* <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                    >
-                    <Back index={index} setIndex={setIndex} />
-                    <Forward index={index} setIndex={setIndex} />
-                  </div> */}
-                  <AutoStep setIndex={setIndex} />
-                </Form>
-              </div>
-              <div>
-                <ProgressBar />
-                <ButtonBar />
-              </div>
-            </Container>
-          </Background>
-        )}
-      </Formik>
-      {silence && <SilencePulse />}
-    </Container>
+    <NavigationProvider text={text}>
+      {/* <ProgressBar /> */}
+      <Container>
+        <Formik<Options>
+          initialValues={{ intro: "bereuen", tone: "ehren", volume: "mittel" }}
+          onSubmit={async (values, f) => {
+            if (values.intro === "beschweigen") {
+              setSilence(values.intro === "beschweigen")
+              f.setSubmitting(false)
+            } else {
+              f.setSubmitting(true)
+              const response = await getText(values)
+              if (response.ok) {
+                setText(response.data.text)
+              } else {
+                notification.error({ message: response.error })
+              }
+            }
+          }}
+        >
+          {(f) => (
+            <Spin
+              spinning={f.isSubmitting}
+              tip="Deine Erinnerung wird generiert..."
+            >
+              <Form>
+                <Background>
+                  <Container>
+                    <Header />
+                    <Content />
+                    <div>
+                      <AutoStep setIndex={setIndex} />
+                    </div>
+                    <div>
+                      <ButtonBar />
+                    </div>
+                    {/* <FormikDebug /> */}
+                  </Container>
+                </Background>
+              </Form>
+            </Spin>
+          )}
+        </Formik>
+        {silence && <SilencePulse />}
+      </Container>
+    </NavigationProvider>
   )
 }
 
 const Container = styled.div`
-  max-width: 500px;
+  // max-width: 500px;
+  // margin: 40px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -106,34 +105,6 @@ function AutoStep({
     }
   }, [ctx.values, setIndex, ctx])
   return null
-}
-
-function Forward({
-  index,
-  setIndex,
-}: {
-  index: number
-  setIndex: React.Dispatch<React.SetStateAction<number>>
-}) {
-  return index === 2 ? (
-    <SubmitButton style={{ marginTop: 10 }}>Starten</SubmitButton>
-  ) : (
-    <Button onClick={() => setIndex(index + 1)}>Weiter</Button>
-  )
-}
-
-function Back({
-  index,
-  setIndex,
-}: {
-  index: number
-  setIndex: React.Dispatch<React.SetStateAction<number>>
-}) {
-  return index === 0 ? (
-    <div />
-  ) : (
-    <Button onClick={() => setIndex(index - 1)}>Zurück</Button>
-  )
 }
 
 export default App
