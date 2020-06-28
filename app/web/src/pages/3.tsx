@@ -1,6 +1,6 @@
 import * as React from "react"
 import { RadioGroup } from "formik-antd/es/form-items"
-import { Radio, SubmitButton } from "formik-antd"
+import { Radio } from "formik-antd"
 import { useFormikContext } from "formik"
 import { Question } from "./question"
 

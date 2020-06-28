@@ -2,9 +2,15 @@ const url =
   "https://lagerhaus-g.langtec.de/lagerhaus-g/api/generate/memorial/generated.json"
 
 export interface Options {
-  intro: "erinnern" | "verachten" | "bereuen" | "betrauern" | "beschweigen"
-  volume: "still" | "mittel" | "laut" | "ganz laut"
-  tone: "mahnen" | "ehren" | "gedenken"
+  intro:
+    | "erinnern"
+    | "verachten"
+    | "bereuen"
+    | "betrauern"
+    | "beschweigen"
+    | null
+  volume: "still" | "mittel" | "laut" | "ganz laut" | null
+  tone: "mahnen" | "ehren" | "gedenken" | null
 }
 
 export function get(params: Options) {

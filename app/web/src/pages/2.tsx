@@ -15,13 +15,13 @@ export function Second() {
           Still
         </Radio.Button>
         <Radio.Button name="volume" value="mittel">
-          Leise
+          Bewegt
         </Radio.Button>
         <Radio.Button name="volume" value="laut">
-          Laut
+          Ergriffen
         </Radio.Button>
         <Radio.Button name="volume" value="ganz laut">
-          Ganz laut
+          Impulsiv
         </Radio.Button>
       </RadioGroup>
       {/* <Form.Item name="volume">
