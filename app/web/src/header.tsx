@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { useField } from "formik"
+import { mapVolume } from "./pages/2"
 
 export function Header() {
   const [{ value: intro }, { touched: introTouched }] = useField("intro")
@@ -20,10 +21,12 @@ export function Header() {
         <Subtitle>GENERATOR</Subtitle>
       </div>
       <div style={{ marginRight: "0.5rem" }}>
-        Geschichte
-        <Value style={{ opacity: introTouched ? 1 : 0 }}>{intro || "_"}</Value>,
+        <Value style={{ opacity: introTouched ? 1 : 0 }}>Geschichte</Value>
+        <Value style={{ opacity: introTouched ? 1 : 0 }}>
+          {intro + "," || "_"}
+        </Value>
         <Value style={{ opacity: volumeTouched ? 1 : 0 }}>
-          {volume || "_"}
+          {mapVolume(volume)?.toLowerCase() || "_"}
         </Value>
         <Value style={{ opacity: toneTouched ? 1 : 0 }}>{tone || "_"}</Value>
       </div>

@@ -14,7 +14,7 @@ export interface Page {
 
 export interface ActionProps {
   page: string
-  title: string
+  title?: string
   props?: ButtonProps
 }
 

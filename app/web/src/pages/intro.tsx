@@ -9,14 +9,12 @@ export function IntroText() {
         <p>
           Die Gedenktafel ist zur Zeit der einzige Hinweis auf die
           nationalsozialistische Vergangenheit des Lagerhaus G. Nüchtern und
-          faktisch gibt sie die Geschichte wider.
+          faktisch gibt sie die Geschichte wider. Mit dem Erinnerungsgenerator
+          kannst du Geschichte aus verschiedenen Perspektiven wahrnehmen.
+          Trauer? Scham? Wut? Wie du dich an die Geschichte erinnern willst, hat
+          direkten Einfluss darauf, wie sie geschrieben wird.
         </p>
-        <p>
-          Mit dem Erinnerungsgenerator kannst du die Geschichte aus
-          verschiedenen Perspektiven wahrnehmen. Trauer? Scham? Wut? Wie du dich
-          an die Geschichte erinnern willst, hat direkten Einfluss darauf, wie
-          sie geschrieben wird.
-        </p>
+        <p>Speichere am Ende dein Ergebnis oder schlage neue Begriffe vor.</p>
       </TextContainer>
     </PageContainer>
   )

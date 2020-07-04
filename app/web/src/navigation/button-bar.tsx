@@ -3,6 +3,8 @@ import { Button } from "antd"
 import styled from "styled-components"
 import { useNavigation } from "./navigation"
 
+const style = { width: "8em", height: "5em" }
+
 export function ButtonBar() {
   const {
     navigate,
@@ -15,6 +17,7 @@ export function ButtonBar() {
         <Button
           size="large"
           onClick={() => navigate(previous.page)}
+          style={style}
           {...previous.props}
         >
           {previous.title}
@@ -26,6 +29,7 @@ export function ButtonBar() {
         <Button
           size="large"
           onClick={() => navigate(next.page)}
+          style={style}
           {...next.props}
         >
           {next.title}
