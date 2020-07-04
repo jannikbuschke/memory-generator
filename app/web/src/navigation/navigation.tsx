@@ -8,6 +8,7 @@ export interface Page {
   progress?: number
   Content: any
   next?: ActionProps
+  showNext?: boolean
   previous?: ActionProps
   container?: any
 }
@@ -23,6 +24,7 @@ interface INavigationContext {
   currentPage: Page
   navigate: (page: string) => void
   defaultContainer: any
+  next: () => void
 }
 
 export const NavigationContext = React.createContext<INavigationContext>(
@@ -53,11 +55,22 @@ export function NavigationProvider({
 }>) {
   const [page, setPage] = React.useState<Page>(pages["landing"])
 
-  const Container = page.container ? page.container : defaultContainer
-
   return (
     <NavigationContext.Provider
       value={{
+        next: () => {
+          const nextPage = page.next?.page
+          if (!nextPage) {
+            notification.error({ message: `There is no next page` })
+          } else {
+            const next = pages[nextPage]
+            if (!next) {
+              notification.error({ message: `Page '${page}' not found` })
+            } else {
+              setPage(next)
+            }
+          }
+        },
         defaultContainer,
         text,
         currentPage: page,

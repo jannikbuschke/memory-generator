@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import { Formik, useFormikContext } from "formik"
+import { Formik } from "formik"
 import { Form } from "formik-antd"
 import {
   BackgroundContainer,
@@ -8,18 +8,17 @@ import {
   SilencedBackgroundContainer,
 } from "./pages/silence"
 import "antd/dist/antd.css"
-import { notification, Spin, Button } from "antd"
+import { notification, Spin } from "antd"
 import { Options, getText } from "./api"
 import { Header } from "./header"
 import styled from "styled-components"
 import { NavigationProvider } from "./navigation/navigation"
-import { Content } from "./navigation/content"
-import { Container, ContentContainer } from "./layout"
+import { Content as Page } from "./navigation/content"
+import { Container } from "./layout"
 import { ButtonBar } from "./navigation/button-bar"
 import { pages } from "./pages"
 
-let vh = window.innerHeight * 0.01
-// Then we set the value in the --vh custom property to the root of the document
+const vh = window.innerHeight * 0.01
 
 function App() {
   const [silence, setSilence] = React.useState(false)
@@ -32,6 +31,8 @@ function App() {
     }
   }, [silence])
   React.useEffect(() => {
+    document.documentElement.style.setProperty("--vh", `${vh}px`)
+
     window.addEventListener("resize", () => {
       let vh = window.innerHeight * 0.01
       document.documentElement.style.setProperty("--vh", `${vh}px`)
@@ -39,7 +40,7 @@ function App() {
   }, [])
   const [text, setText] = React.useState<string | null>(null)
   return (
-    <div style={{ height: "calc(var(--vh,1vh)*100" }}>
+    <RootContainer>
       <NavigationProvider
         text={text}
         pages={pages}
@@ -66,25 +67,30 @@ function App() {
             <Spin
               spinning={f.isSubmitting}
               size="large"
-              style={{ maxHeight: "100vh" }}
+              style={{ height: "100%" }}
+              wrapperClassName="spin"
             >
-              <Form>
-                <RootContainer>
-                  <Background>
+              <Form style={{ height: "100%" }}>
+                <Background>
+                  <PageContainer>
                     <Header />
-                    <Content />
+                    <Page />
                     <ButtonBar />
-                  </Background>
-                </RootContainer>
+                  </PageContainer>
+                </Background>
               </Form>
             </Spin>
           )}
         </Formik>
         {silence && <SilencePulse />}
       </NavigationProvider>
-    </div>
+    </RootContainer>
   )
 }
+
+const PageContainer = styled(Container)`
+  height: calc(var(--vh, 1vh) * 100);
+`
 
 const DefaultContentContainer = styled.div`
   flex: 1;
@@ -97,29 +103,6 @@ const DefaultContentContainer = styled.div`
 
 const RootContainer = styled(Container)`
   width: 100vw;
-  height: 100vh;
 `
-
-function AutoStep({
-  setIndex,
-}: {
-  setIndex: React.Dispatch<React.SetStateAction<number>>
-}) {
-  const ctx = useFormikContext<Options>()
-  React.useEffect(() => {
-    if (!ctx.touched.intro) {
-      setIndex(0)
-    } else if (!ctx.touched.volume) {
-      if (ctx.values.intro === "beschweigen") {
-        ctx.submitForm()
-      } else {
-        setIndex(1)
-      }
-    } else if (!ctx.touched.tone) {
-      setIndex(2)
-    }
-  }, [ctx.values, setIndex, ctx])
-  return null
-}
 
 export default App

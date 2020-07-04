@@ -35,6 +35,8 @@ export function Header() {
 }
 
 const Container = styled.div`
+  height: 100px;
+
   background: black;
   padding: 0.5rem;
   display: flex;

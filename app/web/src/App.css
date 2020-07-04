@@ -36,6 +36,11 @@ body {
   }
 }
 
+.ant-spin-container,
+.ant-spin-nested-loading {
+  height: 100% !important;
+}
+
 /* body {
   background: linear-gradient(-45deg, #777777, #383838);
   background-size: 400% 400%;

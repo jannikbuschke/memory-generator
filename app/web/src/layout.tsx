@@ -12,5 +12,16 @@ export const CenteringContainer = styled(Container)`
 `
 
 export const ContentContainer = styled(CenteringContainer)`
-  padding: 1rem;
+  padding: 2rem;
+`
+
+export const TextContainer = styled(Container)`
+  background: black;
+  color: white;
+  flex-grow: 1;
+  overflow: auto;
+  font-size: calc(10px + 1.8vmin);
+  overflow: auto;
+  padding: 0em 2em;
+  text-align: justify;
 `

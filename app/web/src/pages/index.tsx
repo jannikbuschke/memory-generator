@@ -12,6 +12,7 @@ import { Container } from "../layout"
 import { Project } from "./project"
 import { History } from "./history"
 import { CaretRightFilled, CaretLeftFilled } from "@ant-design/icons"
+import { Fourth } from "./4"
 
 const NoContainer = styled(Container)``
 
@@ -54,20 +55,31 @@ export const pages: Pages = {
   first: {
     name: "first",
     Content: <First />,
-    next: { page: "second", props: nextProps },
     previous: { page: "intro1", props: prevProps },
+    next: { page: "second", props: nextProps },
+    showNext: false,
     progress: 0,
   },
   second: {
     name: "second",
     Content: <Second />,
-    next: { page: "third", props: nextProps },
     previous: { page: "first", props: prevProps },
+    next: { page: "third", props: nextProps },
+    showNext: false,
+
     progress: 1,
   },
   third: {
     name: "third",
     Content: <Third />,
+    previous: { page: "second", props: prevProps },
+    next: { page: "fourth" },
+    showNext: false,
+    progress: 2,
+  },
+  fourth: {
+    name: "fourth",
+    Content: <Fourth />,
     previous: { page: "second", props: prevProps },
     next: {
       page: "result",
@@ -77,6 +89,7 @@ export const pages: Pages = {
         style: { width: "15em", height: "5em", fontSize: "1.3em" },
       },
     },
+    showNext: false,
     progress: 2,
   },
   result: {

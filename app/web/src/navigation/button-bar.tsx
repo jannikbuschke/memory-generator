@@ -3,18 +3,29 @@ import { Button } from "antd"
 import styled from "styled-components"
 import { useNavigation } from "./navigation"
 
-const style = { width: "8em", height: "5em" }
+const style: React.CSSProperties = {
+  width: "8em",
+  height: "3em",
+  border: "none",
+}
 
 export function ButtonBar() {
   const {
     navigate,
-    currentPage: { next, previous, name },
+    currentPage: { next, previous, name, showNext },
   } = useNavigation()
+  const [key, setKey] = React.useState(Math.random())
+  React.useEffect(() => {
+    setTimeout(() => {
+      setKey(Math.random())
+    }, 1000)
+  }, [name])
 
   return (
     <Bar>
       {previous ? (
         <Button
+          key={key + "1"}
           size="large"
           onClick={() => navigate(previous.page)}
           style={style}
@@ -25,8 +36,9 @@ export function ButtonBar() {
       ) : (
         <div></div>
       )}
-      {next ? (
+      {next && showNext !== false ? (
         <Button
+          key={key + "2"}
           size="large"
           onClick={() => navigate(next.page)}
           style={style}
@@ -42,7 +54,7 @@ export function ButtonBar() {
 }
 
 export const Bar = styled.div`
-  padding: 1rem;
+  padding: 0.3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

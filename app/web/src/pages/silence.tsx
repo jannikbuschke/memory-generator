@@ -69,6 +69,9 @@ export const SilencedBackgroundContainer = styled.div`
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: .5s;
+  height:100%
 `
 
-export const BackgroundContainer = styled(Container)``
+export const BackgroundContainer = styled(Container)`
+  height: 100%;
+`

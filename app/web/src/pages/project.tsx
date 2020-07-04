@@ -1,11 +1,9 @@
 import * as React from "react"
-import { useFormikContext } from "formik"
+import { TextContainer } from "../layout"
 
 export function Project() {
-  const ctx = useFormikContext<any>()
-
   return (
-    <>
+    <TextContainer>
       <b>
         <div>WIE ERINNERN</div>
         <div>WIR UNS IN ZUKUNFT?</div>
@@ -41,6 +39,6 @@ export function Project() {
         und emotionale Erinnerungstexte, stellt er die offizielle Erzählweise
         von Geschichte in Frage.
       </p>
-    </>
+    </TextContainer>
   )
 }

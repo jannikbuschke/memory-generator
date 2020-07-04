@@ -1,12 +1,10 @@
 import * as React from "react"
-import { useFormikContext } from "formik"
 import styled from "styled-components"
+import { ContentContainer } from "../layout"
 
 export function History() {
-  const ctx = useFormikContext<any>()
-
   return (
-    <>
+    <ContentContainer>
       <p>
         Alle Informationen aus den generierten Texten haben wir aus öffentlich
         zugänglichem Material zusammengestellt. Möchtest du eigenständig weiter
@@ -24,7 +22,7 @@ export function History() {
         Berichte und Biografien von Hédi Fried, Livia Fränkel, Edith Kraus,
         Dagmar Lieblová, Zuzana Rùžièková, Jean Le Bris u. w.
       </Link>
-    </>
+    </ContentContainer>
   )
 }
 

@@ -1,8 +1,7 @@
 import * as React from "react"
-import { RadioGroup } from "formik-antd/es/form-items"
-import { Radio, Form, Slider } from "formik-antd"
-import { useFormikContext } from "formik"
-import { Question } from "./question"
+import { Question, ActionContainer, Action } from "./questions.shared"
+import { ContentContainer } from "../layout"
+
 // "still" | "mittel" | "laut" | "ganz laut"
 
 export function mapVolume(volume: "still" | "mittel" | "laut" | "ganz laut") {
@@ -19,25 +18,19 @@ export function mapVolume(volume: "still" | "mittel" | "laut" | "ganz laut") {
 }
 
 export function Second() {
-  const ctx = useFormikContext<any>()
   return (
-    <>
+    <ContentContainer>
       <Question>Wie willst du an die Geschichte erinnern?</Question>
-
-      <RadioGroup name="volume" size="large">
-        <Radio.Button name="volume" value="still">
-          {mapVolume("still")}
-        </Radio.Button>
-        <Radio.Button name="volume" value="mittel">
-          {mapVolume("mittel")}
-        </Radio.Button>
-        <Radio.Button name="volume" value="laut">
-          {mapVolume("laut")}
-        </Radio.Button>
-        <Radio.Button name="volume" value="ganz laut">
-          {mapVolume("ganz laut")}
-        </Radio.Button>
-      </RadioGroup>
-    </>
+      <ActionContainer>
+        <Action name="volume" title={mapVolume("still")} value="still" />
+        <Action name="volume" title={mapVolume("mittel")} value="mittel" />
+        <Action name="volume" title={mapVolume("laut")} value="laut" />
+        <Action
+          name="volume"
+          title={mapVolume("ganz laut")}
+          value="ganz laut"
+        />
+      </ActionContainer>
+    </ContentContainer>
   )
 }

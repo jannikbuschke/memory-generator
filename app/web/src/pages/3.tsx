@@ -1,30 +1,16 @@
 import * as React from "react"
-import { RadioGroup } from "formik-antd/es/form-items"
-import { Radio } from "formik-antd"
-import { useFormikContext } from "formik"
-import { Question } from "./question"
+import { Question, ActionContainer, Action } from "./questions.shared"
+import { ContentContainer } from "../layout"
 
 export function Third() {
-  const ctx = useFormikContext<any>()
-
   return (
-    <>
+    <ContentContainer>
       <Question>Was beabsichtigst du mit deiner Erinnerung?</Question>
-      <RadioGroup
-        name="tone"
-        size="large"
-        disabled={ctx.values.intro === "beschweigen"}
-      >
-        <Radio.Button name="tone" value="gedenken">
-          Gedenken
-        </Radio.Button>
-        <Radio.Button name="tone" value="ehren">
-          Ehren
-        </Radio.Button>
-        <Radio.Button name="tone" value="mahnen">
-          Mahnen
-        </Radio.Button>
-      </RadioGroup>
-    </>
+      <ActionContainer>
+        <Action name="tone" title={"Gedenken"} value="gedenken" />
+        <Action name="tone" title={"Ehren"} value="ehren" />
+        <Action name="tone" title={"Mahnen"} value="mahnen" />
+      </ActionContainer>
+    </ContentContainer>
   )
 }
