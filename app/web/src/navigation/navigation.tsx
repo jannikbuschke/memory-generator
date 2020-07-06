@@ -55,6 +55,18 @@ export function NavigationProvider({
 }>) {
   const [page, setPage] = React.useState<Page>(pages["landing"])
 
+  const navigate = React.useCallback(
+    (page: string) => {
+      const next = pages[page]
+      if (!next) {
+        notification.error({ message: `Page '${page}' not found` })
+      } else {
+        setPage(next)
+      }
+    },
+    [pages],
+  )
+
   return (
     <NavigationContext.Provider
       value={{
@@ -74,14 +86,7 @@ export function NavigationProvider({
         defaultContainer,
         text,
         currentPage: page,
-        navigate: (page) => {
-          const next = pages[page]
-          if (!next) {
-            notification.error({ message: `Page '${page}' not found` })
-          } else {
-            setPage(next)
-          }
-        },
+        navigate,
       }}
     >
       {children}

@@ -16,10 +16,12 @@ export function Action({
   name,
   value,
   title,
+  onClick,
 }: {
   name: string
   title: string
   value: string
+  onClick?: () => void
 }) {
   const { next } = useNavigation()
   const [, , f] = useField(name)
@@ -31,7 +33,7 @@ export function Action({
       onClick={() => {
         f.setValue(value)
         f.setTouched(true)
-        next()
+        onClick ? onClick() : next()
       }}
     >
       <BtnContent>{title}</BtnContent>

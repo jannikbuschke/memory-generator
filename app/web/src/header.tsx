@@ -1,14 +1,22 @@
 import * as React from "react"
 import styled from "styled-components"
-import { useField } from "formik"
+import { useField, useFormikContext } from "formik"
 import { mapVolume } from "./pages/2"
+import { useNavigation } from "./navigation/navigation"
 
 export function Header() {
   const [{ value: intro }, { touched: introTouched }] = useField("intro")
   const [{ value: tone }, { touched: toneTouched }] = useField("tone")
   const [{ value: volume }, { touched: volumeTouched }] = useField("volume")
+  const { navigate } = useNavigation()
+  const { resetForm } = useFormikContext()
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        resetForm()
+        navigate("landing")
+      }}
+    >
       <div
         style={{
           marginLeft: "1rem",
@@ -41,6 +49,9 @@ const Container = styled.div`
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Title = styled.div`

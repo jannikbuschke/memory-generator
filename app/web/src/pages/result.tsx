@@ -2,7 +2,7 @@ import * as React from "react"
 import { useFormikContext } from "formik"
 import { useNavigation } from "../navigation/navigation"
 import styled from "styled-components"
-import { Button, Space, Popover, Alert } from "antd"
+import { Button, Space, Popover, Alert, Spin } from "antd"
 import { ButtonProps } from "antd/lib/button"
 import { CaretRightFilled } from "@ant-design/icons"
 import { ContentContainer } from "../layout"
@@ -13,47 +13,71 @@ const sample =
 export function Result() {
   const { text } = useNavigation()
   const ctx = useFormikContext()
-  React.useEffect(() => {
-    // if (text === null) {
-    //   ctx.submitForm()
-    // }
-  }, [text])
-  return (
-    <ContentContainer>
-      {text && !ctx.isSubmitting === null && (
-        <Alert
-          type="warning"
-          message="Leider konnte der Text nicht generiert werden. Es wird ein Beispieltext angezeigt"
-        />
-      )}
-      <div
-        style={{ fontSize: "1.4rem", maxWidth: 500 }}
-        dangerouslySetInnerHTML={{ __html: text || sample }}
-      />
-      <br />
-      <br />
-      <br />
-      <br />
 
-      <ActionContainer direction="vertical">
-        <Share text={text || sample} />
-        <Action page="statistics">
-          Statistiken ansehen <CaretRightFilled />
-        </Action>
-        <Action page="suggest">
-          Begriffe vorschlagen <CaretRightFilled />
-        </Action>
-        <Action page="history">
-          Mehr über die Geschichte des Lagerhaus G erfahren <CaretRightFilled />
-        </Action>
-        <Action page="project">
-          Mehr über die Hintergründe des Projektes lesen <CaretRightFilled />
-        </Action>
-        <Action page="landing">
-          Nochmal von vorne <CaretRightFilled />
-        </Action>
-      </ActionContainer>
-    </ContentContainer>
+  const [checkDelay, setCheckDelay] = React.useState(0)
+  const [delay, setDelay] = React.useState<boolean>(false)
+  React.useEffect(() => {
+    if (checkDelay !== 0 && ctx.isSubmitting) {
+      setDelay(true)
+    }
+  }, [checkDelay, ctx.isSubmitting])
+  React.useEffect(() => {
+    setTimeout(() => setCheckDelay(Math.random()), 3500)
+  }, [ctx, ctx.isSubmitting])
+  return (
+    <Spin
+      spinning={ctx.isSubmitting}
+      tip={
+        delay
+          ? "Einen Moment dauert es noch. Deine Erinnerung wird generiert..."
+          : undefined
+      }
+      size="large"
+      style={{ height: "100%" }}
+      wrapperClassName="spin"
+    >
+      <ContentContainer>
+        {text === null && !ctx.isSubmitting && (
+          <Alert
+            type="warning"
+            message="Leider konnte der Text nicht generiert werden. Es wird ein Beispieltext angezeigt"
+          />
+        )}
+        <div
+          style={{ fontSize: "1.4rem", maxWidth: 500 }}
+          dangerouslySetInnerHTML={{
+            __html: ctx.isSubmitting ? "" : text || sample,
+          }}
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        {!ctx.isSubmitting && (
+          <ActionContainer direction="vertical">
+            <Share text={text || sample} />
+            <Action page="statistics">
+              Statistiken ansehen <CaretRightFilled />
+            </Action>
+            <Action page="suggest">
+              Begriffe vorschlagen <CaretRightFilled />
+            </Action>
+            <Action page="history">
+              Mehr über die Geschichte des Lagerhaus G erfahren{" "}
+              <CaretRightFilled />
+            </Action>
+            <Action page="project">
+              Mehr über die Hintergründe des Projektes lesen{" "}
+              <CaretRightFilled />
+            </Action>
+            <Action page="landing">
+              Nochmal von vorne <CaretRightFilled />
+            </Action>
+          </ActionContainer>
+        )}
+      </ContentContainer>
+    </Spin>
   )
 }
 

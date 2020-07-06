@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import { Formik } from "formik"
+import { Formik, useFormikContext } from "formik"
 import { Form } from "formik-antd"
 import {
   BackgroundContainer,
@@ -8,17 +8,15 @@ import {
   SilencedBackgroundContainer,
 } from "./pages/silence"
 import "antd/dist/antd.css"
-import { notification, Spin } from "antd"
+import { notification } from "antd"
 import { Options, getText } from "./api"
 import { Header } from "./header"
 import styled from "styled-components"
-import { NavigationProvider } from "./navigation/navigation"
+import { NavigationProvider, useNavigation } from "./navigation/navigation"
 import { Content as Page } from "./navigation/content"
 import { Container } from "./layout"
 import { ButtonBar } from "./navigation/button-bar"
 import { pages } from "./pages"
-
-const vh = window.innerHeight * 0.01
 
 function App() {
   const [silence, setSilence] = React.useState(false)
@@ -31,10 +29,10 @@ function App() {
     }
   }, [silence])
   React.useEffect(() => {
+    const vh = window.innerHeight
     document.documentElement.style.setProperty("--vh", `${vh}px`)
-
     window.addEventListener("resize", () => {
-      let vh = window.innerHeight * 0.01
+      const vh = window.innerHeight
       document.documentElement.style.setProperty("--vh", `${vh}px`)
     })
   }, [])
@@ -64,22 +62,16 @@ function App() {
           }}
         >
           {(f) => (
-            <Spin
-              spinning={f.isSubmitting}
-              size="large"
-              style={{ height: "100%" }}
-              wrapperClassName="spin"
-            >
-              <Form style={{ height: "100%" }}>
-                <Background>
-                  <PageContainer>
-                    <Header />
-                    <Page />
-                    <ButtonBar />
-                  </PageContainer>
-                </Background>
-              </Form>
-            </Spin>
+            <Form style={{ height: "100%" }}>
+              <Background>
+                <PageContainer>
+                  <Header />
+                  <Page />
+                  <ButtonBar />
+                </PageContainer>
+                <ResetAfterSilence silence={silence} />
+              </Background>
+            </Form>
           )}
         </Formik>
         {silence && <SilencePulse />}
@@ -88,8 +80,23 @@ function App() {
   )
 }
 
+function ResetAfterSilence({ silence }: { silence: boolean }) {
+  const { resetForm } = useFormikContext()
+  const { navigate } = useNavigation()
+  const [isActive, setIsActive] = React.useState(true)
+  React.useEffect(() => {
+    if (silence) {
+      setIsActive(false)
+    } else if (!silence && isActive) {
+      resetForm()
+      navigate("landing")
+    }
+  }, [silence, isActive, resetForm, navigate])
+  return null
+}
+
 const PageContainer = styled(Container)`
-  height: calc(var(--vh, 1vh) * 100);
+  height: var(--vh, 1vh);
 `
 
 const DefaultContentContainer = styled.div`
