@@ -47,5 +47,5 @@ steps:
     remoteDirectory: '/httpdocs/' 
     #clean: false 
     #cleanContents: false # Required when clean == False
-    #preservePaths: false 
+    preservePaths: true 
     trustSSL: true 
