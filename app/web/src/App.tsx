@@ -21,13 +21,7 @@ import { pages } from "./pages"
 function App() {
   const [silence, setSilence] = React.useState(false)
   const Background = silence ? SilencedBackgroundContainer : BackgroundContainer
-  React.useEffect(() => {
-    if (silence) {
-      setTimeout(() => {
-        setSilence(false)
-      }, 20000)
-    }
-  }, [silence])
+
   React.useEffect(() => {
     const vh = window.innerHeight
     document.documentElement.style.setProperty("--vh", `${vh}px`)
@@ -46,6 +40,9 @@ function App() {
       >
         <Formik<Options>
           initialValues={{ intro: null, tone: null, volume: null }}
+          onReset={() => {
+            setSilence(false)
+          }}
           onSubmit={async (values, f) => {
             if (values.intro === "beschweigen") {
               setSilence(values.intro === "beschweigen")
@@ -71,10 +68,10 @@ function App() {
                 </PageContainer>
                 <ResetAfterSilence silence={silence} />
               </Background>
+              {silence && <SilencePulse />}
             </Form>
           )}
         </Formik>
-        {silence && <SilencePulse />}
       </NavigationProvider>
     </RootContainer>
   )

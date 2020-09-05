@@ -39,6 +39,8 @@ export function Project() {
         und emotionale Erinnerungstexte, stellt er die offizielle Erzählweise
         von Geschichte in Frage.
       </p>
+      <br />
+      <br />
     </TextContainer>
   )
 }

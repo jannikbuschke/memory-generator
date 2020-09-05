@@ -2,9 +2,9 @@ import * as React from "react"
 import { useFormikContext } from "formik"
 import { useNavigation } from "../navigation/navigation"
 import styled from "styled-components"
-import { Button, Space, Popover, Alert, Spin } from "antd"
+import { Space, Popover, Alert, Spin } from "antd"
 import { ButtonProps } from "antd/lib/button"
-import { CaretRightFilled } from "@ant-design/icons"
+import { CaretRightFilled as AntCaretRightFilled } from "@ant-design/icons"
 import { ContentContainer } from "../layout"
 
 const sample =
@@ -55,24 +55,33 @@ export function Result() {
         <br />
 
         {!ctx.isSubmitting && (
-          <ActionContainer direction="vertical">
+          <ActionContainer direction="vertical" size="large">
             <Share text={text || sample} />
             <Action page="statistics">
-              Statistiken ansehen <CaretRightFilled />
+              <div>
+                Statistiken ansehen <CaretRightFilled />
+              </div>
             </Action>
             <Action page="suggest">
-              Begriffe vorschlagen <CaretRightFilled />
+              <div>
+                Begriffe vorschlagen <CaretRightFilled />
+              </div>
             </Action>
             <Action page="history">
-              Mehr über die Geschichte des Lagerhaus G erfahren{" "}
+              <div style={{ textAlign: "right" }}>
+                Mehr über die Geschichte des Lagerhaus G erfahren{" "}
+              </div>
               <CaretRightFilled />
             </Action>
             <Action page="project">
-              Mehr über die Hintergründe des Projektes lesen{" "}
+              <div style={{ textAlign: "right" }}>
+                Mehr über die Hintergründe des Projektes lesen{" "}
+              </div>
               <CaretRightFilled />
             </Action>
-            <Action page="landing">
-              Nochmal von vorne <CaretRightFilled />
+            <Action page="first">
+              <div>Nochmal von vorne</div>
+              <CaretRightFilled />
             </Action>
           </ActionContainer>
         )}
@@ -80,6 +89,11 @@ export function Result() {
     </Spin>
   )
 }
+
+const CaretRightFilled = styled(AntCaretRightFilled)`
+  font-size: 20px;
+  margin-left: 4px;
+`
 
 const newLine = "%0D%0A"
 const space = "%20"
@@ -92,16 +106,6 @@ const Share = ({ text }: { text: string }) => {
         <div>
           <div>
             <a
-              href={`whatsapp://send?text=${text}${newLine}${newLine}http://www.Erinnerungsgenerator.de`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-action="share/whatsapp/share"
-            >
-              Share via Whatsapp
-            </a>
-          </div>
-          <div>
-            <a
               rel="noopener noreferrer"
               target="_blank"
               href={`mailto:?subject=Ein${space}generierter${space}Erinnerungstext&body=${text}${newLine}${newLine}http://www.Erinnerungsgenerator.de`}
@@ -111,19 +115,29 @@ const Share = ({ text }: { text: string }) => {
           </div>
           <div>
             <a
+              href={`whatsapp://send?text=${text}${newLine}${newLine}http://www.Erinnerungsgenerator.de`}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-action="share/whatsapp/share"
+            >
+              Whatsapp
+            </a>
+          </div>
+          {/* <div>
+            <a
               href={`https://twitter.com/intent/tweet?text=Ein${space}generierter${space}Erinnerungstext${newLine}${newLine}http://www.Erinnerungsgenerator.de`}
               rel="noopener noreferrer"
               target="_blank"
             >
               Tweet
             </a>
-          </div>
+          </div> */}
         </div>
       }
     >
-      <Button style={{ border: "none" }} size="large">
+      <Btn>
         Erinnerung speichern <CaretRightFilled />
-      </Button>
+      </Btn>
     </Popover>
   )
 }
@@ -131,16 +145,20 @@ const Share = ({ text }: { text: string }) => {
 const Action = ({ page, ...rest }: { page: string } & ButtonProps) => {
   const { navigate } = useNavigation()
 
-  return (
-    <Button
-      size="large"
-      style={{ border: "none" }}
-      onClick={() => navigate(page)}
-      {...rest}
-    />
-  )
+  return <Btn onClick={() => navigate(page)}>{rest.children}</Btn>
 }
+
+const Btn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 const ActionContainer = styled(Space)`
+  margin: 20px;
   align-items: flex-end;
   display: flex;
 `

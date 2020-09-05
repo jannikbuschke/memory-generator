@@ -1,10 +1,12 @@
 import * as React from "react"
 import styled from "styled-components"
 import { Container } from "../layout"
+import { Space } from "antd"
 
 export function Info() {
   return (
     <TextContainer>
+      <br />
       <Title>INFO</Title>
       <SubTitle>UND TEAM</SubTitle>
       <p>
@@ -24,33 +26,48 @@ export function Info() {
         Texter_innen entstanden ist. Er basiert auf einer regelbasierten
         automatisierten Textengine.
       </p>
+      <br />
+      <br />
 
-      <p>
-        <div>Juliane Katzer</div>
-        <div>julianekatzer.de</div>
-        <div>@studio___ding</div>
-        <div>Verantwortlich/Masterabsolventin Studiengang</div>
-      </p>
-      <p>
-        <div>Victoria Dlugokinski</div>
-        <div>Mitverantwortlich/Masterabsolventin Architektur</div>
-      </p>
-      <p>
-        <div>LangTec Semantic Text Processing</div>
-        <div>langtec.de</div>
+      <Space direction="vertical" size="large">
         <div>
-          Implementierung und Bereitstellung von künstlicher Intelligenz
+          <b>Juliane Katzer</b>
+          <div>
+            <i>Masterabsolventin Kommunikationsdesign HAW</i>
+          </div>
+          <div>julianekatzer.de</div>
         </div>
-      </p>
-      <p>
-        <div>Jannik Buschke</div>
-        <div>twitter.com</div>
-        <div>github.com.com</div>
-        <div>Implementierung Frontend</div>
-      </p>
-      <p>
-        <div>Till Brokhausen till.am</div>
-      </p>
+
+        <div>
+          <b>Victoria Dlugokinski</b>
+          <div>
+            <i>Masterabsolventin Architektur HCU</i>
+          </div>
+          <div>victoria.dlugokinski@hcu-hamburg.de</div>
+        </div>
+
+        <div>
+          <b>LangTec Semantic Text Processing</b>
+          <div>
+            <i>Implementierung und Bereitstellung der KI</i>
+          </div>
+          <div>langtec.de</div>
+        </div>
+
+        <div>
+          <b>Jannik Buschke</b>
+          <div>
+            <i>Implementierung Frontend</i>
+          </div>
+          <div>https://twitter.com/jannikbuschke</div>
+          <div>https://github.com/jannikbuschke</div>
+        </div>
+
+        <div>
+          <b>Till Brokhausen</b>
+          <div>till.am</div>
+        </div>
+      </Space>
     </TextContainer>
   )
 }

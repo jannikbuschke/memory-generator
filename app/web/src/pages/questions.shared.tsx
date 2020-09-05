@@ -43,7 +43,7 @@ export function Action({
 
 export const BtnContent = styled.span`
   font-weight: bold;
-  font-size: calc(20px + 1.8vmin);
+  font-size: calc(16px + 1.8vmin);
 `
 
 export const Btn = styled(Button)``
@@ -51,7 +51,7 @@ export const Btn = styled(Button)``
 export const Question = styled.h1`
   font-weight: bold;
   text-align: center;
-  font-size: calc(30px + 1vmin);
+  font-size: calc(16px + 1.8vmin);
   margin: 0;
   font-style: italic;
 `
