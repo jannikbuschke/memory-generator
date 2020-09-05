@@ -43,7 +43,7 @@ steps:
     username: h136763 # Required when credentialsOption == Inputs
     password: $(ftp_pw) # Required when credentialsOption == Inputs
     rootDirectory: 
-    filePatterns: azure-pipelines.yml # 'app/web/build/**' 
+    filePatterns: 'app/web/build/**' 
     remoteDirectory: '/httpdocs/' 
     #clean: false 
     #cleanContents: false # Required when clean == False
