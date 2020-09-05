@@ -43,13 +43,16 @@ export function Info() {
           <div>
             <i>Masterabsolventin Architektur HCU</i>
           </div>
-          <div>victoria.dlugokinski@hcu-hamburg.de</div>
+          <div>v.dlugokinski@web.de</div>
         </div>
 
         <div>
           <b>LangTec Semantic Text Processing</b>
           <div>
-            <i>Implementierung und Bereitstellung der KI</i>
+            <i>
+              Bereitstellung der Textengine und Umsetzung der automatisierten
+              Textgenerierung
+            </i>
           </div>
           <div>langtec.de</div>
         </div>
