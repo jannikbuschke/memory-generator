@@ -42,8 +42,8 @@ steps:
     serverUrl: ftps://server232.campusspeicher.de # Required when credentialsOption == Inputs
     username: h136763 # Required when credentialsOption == Inputs
     password: $(ftp_pw) # Required when credentialsOption == Inputs
-    rootDirectory: 
-    filePatterns: 'app/web/build/**/*' 
+    rootDirectory: app/web/build
+    filePatterns: '**/*'
     remoteDirectory: '/httpdocs/' 
     #clean: false 
     #cleanContents: false # Required when clean == False
