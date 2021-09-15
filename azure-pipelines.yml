@@ -10,19 +10,8 @@ steps:
 - task: Npm@1
   displayName: 'npm install'
   inputs:
-    command: 'install'
-
-- task: Npm@1
-  displayName: 'npm run bootstrap'
-  inputs:
     command: 'custom'
-    customCommand: 'run bootstrap'
-
-- task: Npm@1
-  displayName: 'npm run tsc'
-  inputs:
-    command: 'custom'
-    customCommand: 'run tsc'
+    customCommand: 'run install --legacy-peer-deps'
 
 - task: Npm@1
   displayName: 'npm run build'
@@ -30,20 +19,16 @@ steps:
     REACT_APP_BUILD_ID: $(Build.BuildNumber)
   inputs:
     command: 'custom'
-    workingDir: 'app/web'
     customCommand: 'run build'
 
-- task: FtpUpload@2
-  inputs:
-    credentialsOption: 'inputs' #'serviceEndpoint' Options: serviceEndpoint, inputs
-    #serverEndpoint: # Required when credentialsOption == ServiceEndpoint
-    serverUrl: ftps://server232.campusspeicher.de # Required when credentialsOption == Inputs
-    username: h136763 # Required when credentialsOption == Inputs
-    password: $(ftp_pw) # Required when credentialsOption == Inputs
-    rootDirectory: app/web/build
-    filePatterns: '**/*'
-    remoteDirectory: '/httpdocs/' 
-    #clean: false 
-    #cleanContents: false # Required when clean == False
-    preservePaths: true 
-    trustSSL: true 
+# - task: FtpUpload@2
+#   inputs:
+#     credentialsOption: 'inputs'
+#     serverUrl: ftps://server232.campusspeicher.de
+#     username: h136763
+#     password: $(ftp_pw)
+#     rootDirectory: /build
+#     filePatterns: '**/*'
+#     remoteDirectory: '/httpdocs/'
+#     preservePaths: true
+#     trustSSL: true
