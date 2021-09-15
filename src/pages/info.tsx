@@ -23,52 +23,73 @@ export function Info() {
       <p>
         Das Tool ist ein Hochschulprojekt, welches in Zusammenarbeit mit
         Designer_innen, Architekt_innen, Programmierer_innen, Linguist_innen und
-        Texter_innen entstanden ist. Er basiert auf einer regelbasierten
-        automatisierten Textengine.
+        Texter_innen entstanden ist. Der Erinnerungsgenerator funktioniert mit
+        einer regelbasierten automatisierten Textengine.
       </p>
       <br />
       <br />
 
       <Space direction="vertical" size="large">
         <div>
-          <b>Juliane Katzer</b>
+          JULIANE KATZER
           <div>
-            <i>Masterabsolventin Kommunikationsdesign HAW</i>
+            <i>
+              M.A. Kommunikationsdesign <br /> (HAW Hamburg)
+            </i>
           </div>
-          <div>julianekatzer.de</div>
+          <div>
+            <a href="https://julianekatzer.de/">julianekatzer.de</a>
+          </div>
         </div>
 
         <div>
-          <b>Victoria Dlugokinski</b>
+          VICTORIA DLUGOKINSKI
           <div>
-            <i>Masterabsolventin Architektur HCU</i>
+            <i>
+              M.A. Architektur <br /> (HCU Hamburg)
+            </i>
           </div>
           <div>v.dlugokinski@web.de</div>
         </div>
 
         <div>
-          <b>LangTec Semantic Text Processing</b>
+          LANGTEC SEMANTIC TEXT PROCESSING
           <div>
             <i>
               Bereitstellung der Textengine und Umsetzung der automatisierten
               Textgenerierung
             </i>
           </div>
-          <div>langtec.de</div>
+          <div>
+            <a href="https://www.langtec.de/">langtec.de</a>
+          </div>
         </div>
 
         <div>
-          <b>Jannik Buschke</b>
+          JANNIK BUSCHKE
           <div>
             <i>Implementierung Frontend</i>
           </div>
-          <div>https://twitter.com/jannikbuschke</div>
-          <div>https://github.com/jannikbuschke</div>
+          <div>
+            <a href="https://twitter.com/jannikbuschke">
+              twitter.com/jannikbuschke
+            </a>
+          </div>
+          <div>
+            <a href="https://github.com/jannikbuschke">
+              github.com/jannikbuschke
+            </a>
+          </div>
         </div>
 
         <div>
-          <b>Till Brokhausen</b>
-          <div>till.am</div>
+          TILL BROKHAUSEN
+          <div>
+            <i>Creative Copywriter</i>
+          </div>
+          <div>
+            <a href="https://till.am/">till.am</a>
+          </div>
         </div>
       </Space>
     </TextContainer>
@@ -78,11 +99,13 @@ export function Info() {
 const Title = styled.h1`
   color: white;
   margin: 0;
+  font-size: calc(12px + 1.8vmin);
 `
 const SubTitle = styled.h1`
   color: white;
   margin: 0;
   font-style: italic;
+  font-size: calc(12px + 1.8vmin);
 `
 
 const TextContainer = styled(Container)`

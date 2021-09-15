@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  text-align: left;
+  color: black;
 }
 
 .App-logo {
@@ -23,6 +24,15 @@ body {
   /* color: white; */
 }
 
+p {
+  text-align: left;
+}
+
+div {
+  text-align: left;
+  line-height: 1.3;
+}
+
 #root {
   display: flex;
   /* height: 100vh; */
@@ -30,7 +40,7 @@ body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: black;
 }
 
 @keyframes App-logo-spin {

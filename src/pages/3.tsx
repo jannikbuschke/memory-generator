@@ -7,9 +7,9 @@ export function Third() {
     <ContentContainer>
       <Question>Was beabsichtigst du mit deiner Erinnerung?</Question>
       <ActionContainer>
-        <Action name="tone" title={"GEDENKEN"} value="gedenken" />
-        <Action name="tone" title={"EHREN"} value="ehren" />
-        <Action name="tone" title={"MAHNEN"} value="mahnen" />
+        <Action name="tone" title={"GEDENKEN"} value="GEDENKEN" />
+        <Action name="tone" title={"EHREN"} value="EHREN" />
+        <Action name="tone" title={"MAHNEN"} value="MAHNEN" />
       </ActionContainer>
     </ContentContainer>
   )
