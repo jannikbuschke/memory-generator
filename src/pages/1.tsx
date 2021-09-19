@@ -11,9 +11,9 @@ export function First() {
     <ContentContainer>
       <Question>Wie verhältst du dich zur Geschichte?</Question>
       <ActionContainer>
-        <Action name="intro" title="BEREUEN" value="BEREUEN" />
-        <Action name="intro" title="VERACHTEN" value="VERACHTEN" />
-        <Action name="intro" title="BETRAUERN" value="BETRAUERN" />
+        <Action name="intro" title="BEREUEN" value="bereuen" />
+        <Action name="intro" title="VERACHTEN" value="verachten" />
+        <Action name="intro" title="BETRAUERN" value="trauern" />
         <Action
           name="intro"
           value="beschweigen"
