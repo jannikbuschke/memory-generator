@@ -5,9 +5,13 @@ import { mapVolume } from "./pages/2"
 import { useNavigation } from "./navigation/navigation"
 
 export function Header() {
-  const [{ value: intro }, { touched: introTouched }] = useField("intro")
-  const [{ value: tone }, { touched: toneTouched }] = useField("tone")
-  const [{ value: volume }, { touched: volumeTouched }] = useField("volume")
+  const [{ value: intro }, { touched: introTouched }] = useField<string>(
+    "intro",
+  )
+  const [{ value: tone }, { touched: toneTouched }] = useField<string>("tone")
+  const [{ value: volume }, { touched: volumeTouched }] = useField<any>(
+    "volume",
+  )
   const { navigate } = useNavigation()
   const { resetForm } = useFormikContext()
   return (
@@ -33,12 +37,14 @@ export function Header() {
       <div style={{ marginRight: "0.5rem" }}>
         <Value style={{ opacity: introTouched ? 1 : 0 }}>GESCHICHTE</Value>
         <Value style={{ opacity: introTouched ? 1 : 0 }}>
-          {intro + "," || "_"}
+          {intro?.toUpperCase() + "," || "_"}
         </Value>
         <Value style={{ opacity: volumeTouched ? 1 : 0 }}>
-          {mapVolume(volume)?.toLowerCase() || "_"}
+          {mapVolume(volume)?.toUpperCase() || "_"}
         </Value>
-        <Value style={{ opacity: toneTouched ? 1 : 0 }}>{tone || "_"}</Value>
+        <Value style={{ opacity: toneTouched ? 1 : 0 }}>
+          {tone?.toUpperCase() || "_"}
+        </Value>
       </div>
     </Container>
   )
