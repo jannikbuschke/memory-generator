@@ -18,14 +18,14 @@ steps:
     inputs:
       command: "custom"
       customCommand: "run build"
-# - task: FtpUpload@2
-#   inputs:
-#     credentialsOption: 'inputs'
-#     serverUrl: ftps://server232.campusspeicher.de
-#     username: h136763
-#     password: $(ftp_pw)
-#     rootDirectory: /build
-#     filePatterns: '**/*'
-#     remoteDirectory: '/httpdocs/'
-#     preservePaths: true
-#     trustSSL: true
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: ftps://server232.campusspeicher.de
+    username: h136763
+    password: $(ftp_pw)
+    rootDirectory: /build
+    filePatterns: '**/*'
+    remoteDirectory: '/httpdocs/'
+    preservePaths: true
+    trustSSL: true
