@@ -24,7 +24,7 @@ steps:
       serverUrl: ftps://server232.campusspeicher.de
       username: h136763
       password: $(ftp_pw)
-      rootDirectory: $(Build.ArtifactStagingDirectory)/build
+      rootDirectory: $(Build.SourcesDirectory)/build
       filePatterns: "**/*"
       remoteDirectory: "/httpdocs/"
       preservePaths: true
