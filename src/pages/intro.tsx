@@ -13,7 +13,6 @@ export function IntroText() {
         Scham? Wut? Wie du dich an die Geschichte erinnern willst, hat direkten
         Einfluss darauf, wie sie geschrieben wird.
       </p>
-      <p>Speichere am Ende dein Ergebnis oder schlage neue Begriffe vor.</p>
     </TextContainer>
   )
 }

@@ -44,7 +44,7 @@ export function Result() {
           />
         )}
         <div
-          style={{ fontSize: "1.4rem", maxWidth: 500 }}
+          style={{ fontSize: "1.2rem", maxWidth: 500, color: "black" }}
           dangerouslySetInnerHTML={{
             __html: ctx.isSubmitting ? "" : text || sample,
           }}
@@ -57,26 +57,12 @@ export function Result() {
         {!ctx.isSubmitting && (
           <ActionContainer direction="vertical" size="large">
             <Share text={text || sample} />
-            <Action page="statistics">
-              <div>
-                Statistiken ansehen <CaretRightFilled />
-              </div>
-            </Action>
-            <Action page="suggest">
-              <div>
-                Begriffe vorschlagen <CaretRightFilled />
-              </div>
-            </Action>
             <Action page="history">
-              <div style={{ textAlign: "right" }}>
-                Mehr über die Geschichte des Lagerhaus G erfahren{" "}
-              </div>
+              <div style={{ textAlign: "right" }}>Recherchelinks </div>
               <CaretRightFilled />
             </Action>
             <Action page="project">
-              <div style={{ textAlign: "right" }}>
-                Mehr über die Hintergründe des Projektes lesen{" "}
-              </div>
+              <div style={{ textAlign: "right" }}>Mehr zum Projekt </div>
               <CaretRightFilled />
             </Action>
             <Action page="first">
@@ -136,7 +122,7 @@ const Share = ({ text }: { text: string }) => {
       }
     >
       <Btn>
-        Erinnerung speichern <CaretRightFilled />
+        Erinnerung an mich senden <CaretRightFilled />
       </Btn>
     </Popover>
   )

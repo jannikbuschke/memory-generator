@@ -4,10 +4,12 @@ import { TextContainer } from "../layout"
 export function Project() {
   return (
     <TextContainer>
-      <b>
-        <div>WIE ERINNERN</div>
-        <div>WIR UNS IN ZUKUNFT?</div>
-      </b>
+      <div>
+        WIE ERINNERN
+        <br />
+        WIR UNS IN ZUKUNFT?
+      </div>
+      <br />
       <p>
         Das Lagerhaus G befindet sich zur Zeit in einem Gebiet Städtebaulicher
         Planungen. Es ist unklar, wie das Gebäude in Zukunft genutzt werden soll
@@ -17,9 +19,12 @@ export function Project() {
         werden Einfluss darauf haben, wie in Zukunft an diesem Ort erinnert
         wird.
       </p>
-      <b>
-        <div>ERINNERUNGEN GENERIEREN</div>
-      </b>
+      <br />
+      <br />
+      <div>
+        ERINNERUNGEN <br /> GENERIEREN
+      </div>
+      <br />
       <p>
         Die Möglichkeiten an nationalsozialistische Vergangenheit zu erinnern
         sind vielfältig. Jedes Bestreben die Erinnerung wach zu halten – seien

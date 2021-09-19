@@ -25,11 +25,13 @@ export function Header() {
           justifyContent: "center",
         }}
       >
-        <Title>ERINNERUNGS</Title>
-        <Subtitle>GENERATOR</Subtitle>
+        <b>
+          <Title>ERINNERUNGS</Title>
+          <Subtitle>GENERATOR</Subtitle>
+        </b>
       </div>
       <div style={{ marginRight: "0.5rem" }}>
-        <Value style={{ opacity: introTouched ? 1 : 0 }}>Geschichte</Value>
+        <Value style={{ opacity: introTouched ? 1 : 0 }}>GESCHICHTE</Value>
         <Value style={{ opacity: introTouched ? 1 : 0 }}>
           {intro + "," || "_"}
         </Value>
@@ -57,14 +59,14 @@ const Container = styled.div`
 const Title = styled.div`
   margin-bottom: 0;
   color: white;
-  font-size: calc(12px + 1.8vmin);
+  font-size: calc(12px + 2.2vmin);
 `
 
 const Subtitle = styled.div`
   font-style: italic;
   margin-bottom: 0;
   color: white;
-  font-size: calc(12px + 1.8vmin);
+  font-size: calc(12px + 2.2vmin);
 `
 
 const Value = styled.div`

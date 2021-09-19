@@ -43,15 +43,17 @@ export function Action({
 
 export const BtnContent = styled.span`
   font-weight: bold;
+  text-align: left;
+  color: black;
   font-size: calc(16px + 1.8vmin);
 `
 
 export const Btn = styled(Button)``
 
 export const Question = styled.h1`
-  font-weight: bold;
-  text-align: center;
-  font-size: calc(16px + 1.8vmin);
+  font-weight: normal;
+  text-align: left;
+  color: black;
+  font-size: calc(16px + 0.8vmin);
   margin: 0;
-  font-style: italic;
 `
